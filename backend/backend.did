@@ -1,0 +1,25 @@
+type Tweet = 
+ record {
+   author: text;
+   id: nat;
+   likes: nat;
+   retweets: nat;
+   "text": text;
+   timestamp: int;
+ };
+type Result_1 = 
+ variant {
+   err: text;
+   ok: Tweet;
+ };
+type Result = 
+ variant {
+   err: text;
+   ok;
+ };
+service : {
+  createTweet: (text, text) -> (Result_1);
+  getTweets: () -> (vec Tweet) query;
+  likeTweet: (nat) -> (Result);
+  retweetTweet: (nat) -> (Result);
+}
